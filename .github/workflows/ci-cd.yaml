@@ -53,7 +53,7 @@ jobs:
       #   run: pnpm run lint  # Ensure you have a lint script in package.json
 
   build-and-publish:
-    needs: build-and-test
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
