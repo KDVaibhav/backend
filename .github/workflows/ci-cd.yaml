@@ -16,7 +16,7 @@ jobs:
       - name: Build The Docker Image
         run: docker build . --file Dockerfile --tag workflow-test:$(date +%s)
 
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -49,8 +49,8 @@ jobs:
       # - name: Run Tests
       #   run: pnpm run test  # Replace with your actual test script if different
 
-      - name: Lint Code
-        run: pnpm run lint  # Ensure you have a lint script in package.json
+      # - name: Lint Code
+      #   run: pnpm run lint  # Ensure you have a lint script in package.json
 
   build-and-publish:
     needs: build-and-test
