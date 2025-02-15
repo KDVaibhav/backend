@@ -23,25 +23,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-        
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: latest  # Use the latest pnpm version
-          
+          version: latest # Use the latest pnpm version
+
       - name: Add pnpm to PATH
         run: |
           echo "Adding pnpm to PATH"
           echo "$HOME/.local/share/pnpm" >> $GITHUB_PATH
-          
+
       - name: Debug PATH
         run: echo $PATH
-          
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Use your desired Node.js version
-          cache: 'pnpm'       # Enable caching for pnpm
+          node-version: '20' # Use your desired Node.js version
+          cache: 'pnpm' # Enable caching for pnpm
 
       - name: Install dependencies
         run: pnpm install
@@ -69,13 +68,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Set Docker Image Tag
+        run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/backend:$(date +%s)
-
+          tags: ${{ secrets.DOCKER_USERNAME }}/backend:${{ env.IMAGE_TAG }}
       - name: Image digest
         run: echo ${{ steps.build-and-publish.outputs.digest }}
