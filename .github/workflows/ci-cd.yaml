@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build The Docker Image
-      run: docker build ./backend --file ./backend/Dockerfile --tag workflow-test:$(date +%s)
+      run: docker build . --file Dockerfile --tag workflow-test:$(date +%s)
 
   build-and-test:
     runs-on: ubuntu-latest
@@ -33,15 +33,15 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: cd backend && pnpm install
+        run: pnpm install
 
       - name: Run Tests
         run: |
-          cd backend && pnpm run test # replace with your actual test script if different
+          pnpm run test  # replace with your actual test script if different
 
       - name: Lint Code
         run: |
-          cd backend && pnpm run lint  # make sure you have a lint script in package.json
+          pnpm run lint  # make sure you have a lint script in package.json
 
   build-and-publish:
     needs: build-and-test
@@ -63,8 +63,8 @@ jobs:
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v4
       with: 
-        context: ./backend
-        file: ./backend/Dockerfile
+        context: .
+        file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/backend:$(date +%s)
 
