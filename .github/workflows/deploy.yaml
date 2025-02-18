@@ -21,7 +21,7 @@ jobs:
 
       - name: Connect to EC2 and Deploy
         run: |
-          ssh -i ~/.ssh/ec2_key.pem ubuntu@3.107.86.145 << 'EOF'
+          ssh -t -i ~/.ssh/ec2_key.pem ubuntu@3.107.86.145 << 'EOF'
             echo "Pulling the latest Docker image..."
             docker pull ${{secrets.DOCKER_USERNAME}}/backend: ${{env.IMAGE_TAG}}
 
