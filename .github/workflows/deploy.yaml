@@ -21,7 +21,7 @@ jobs:
 
       - name: Connect to EC2 and Deploy
         run: |
-          ssh -t -i ~/.ssh/ec2_key.pem ubuntu@3.107.86.145 << 'EOF'
+          ssh -i ~/.ssh/ec2_key.pem ubuntu@3.107.86.145 << 'EOF'
             echo "Pulling the latest Docker image..."
             docker pull ${{secrets.DOCKER_USERNAME}}/backend:latest
 
@@ -30,7 +30,7 @@ jobs:
             docker run backend || true
 
             echo "Running new container..."
-            docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/backend:${{env.IMAGE_TAG }}
+            docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/backend:latest
 
             echo "Deployment Completed!"
           EOF

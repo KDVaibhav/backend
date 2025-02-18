@@ -77,6 +77,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/backend:${{ env.IMAGE_TAG }}
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/backend:${{ env.IMAGE_TAG }} 
+            ${{ secrets.DOCKER_USERNAME }}/backend:latest
       - name: Image digest
         run: echo ${{ steps.build-and-publish.outputs.digest }}
