@@ -6,7 +6,7 @@ async function bootstrap() {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   }); // Enable detailed logs
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000' || '',
+    origin: '*',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
