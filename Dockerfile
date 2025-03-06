@@ -50,7 +50,7 @@ COPY --from=build /backend/pnpm-lock.yaml .
 COPY --from=build /backend/node_modules ./node_modules
 COPY --from=build /backend/dist ./dist
 
-EXPOSE 3000
+EXPOSE 5000
 
 # Start application
 CMD ["node", "dist/main.js"]
