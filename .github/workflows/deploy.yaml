@@ -30,7 +30,7 @@ jobs:
             docker rm backend
 
             echo "Running new container..."
-            docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/backend:latest
+            docker run -d --name backend -p 5000:5000 --env-file .env ${{ secrets.DOCKER_USERNAME }}/backend:latest
 
             echo "Deployment Completed!"
           EOF
