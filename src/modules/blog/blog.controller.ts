@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDto, UpdateBlogDto } from './blog.schema';
 import { SkipAuth } from '../auth/skip-auth.decorator';
@@ -7,7 +15,7 @@ import { SkipAuth } from '../auth/skip-auth.decorator';
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
-  @Post('create')
+  @Post()
   create(@Body() createBlogDto: CreateBlogDto) {
     return this.blogService.create(createBlogDto);
   }

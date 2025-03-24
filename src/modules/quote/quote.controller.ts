@@ -11,7 +11,7 @@ import { QuoteService } from './quote.service';
 import { CreateQuoteDto, UpdateQuoteDto } from './quote.schema';
 import { SkipAuth } from '../auth/skip-auth.decorator';
 
-@Controller('quotes')
+@Controller('quote')
 export class QuoteController {
   constructor(private readonly quoteService: QuoteService) {}
 

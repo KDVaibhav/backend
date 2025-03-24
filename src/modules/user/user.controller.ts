@@ -15,22 +15,22 @@ export class UserController {
 
   @SkipAuth()
   @Post('login')
-  login(@Body()  body: any){
+  login(@Body() body: any) {
     return this.userService.login(body.name, body.password);
   }
   @SkipAuth()
   @Post('forget-password')
-  forgetPassword(@Body() forgetPasswordDto:ForgetPasswordDto){
+  forgetPassword(@Body() forgetPasswordDto: ForgetPasswordDto) {}
+
+  @Get('signed-url')
+  uploadSignedUrl() {
+    console.log('hi');
+    return this.userService.uploadSignedUrl();
   }
 
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.userService.findOne(id);
-  }
-
-  @Get('signed-url')
-  uploadSignedUrl(){
-    return this.userService.uploadSignedUrl();
   }
 
   @Patch(':id')

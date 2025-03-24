@@ -8,7 +8,7 @@ import { AuthGuard } from './auth.guard';
   imports: [
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: {expiresIn: '1h'},
+      signOptions: { expiresIn: process.env.JWT_TIME || '1h' },
     }),
     UserModule,
   ],
@@ -16,8 +16,7 @@ import { AuthGuard } from './auth.guard';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    }
-
-  ]
+    },
+  ],
 })
 export class AuthModule {}

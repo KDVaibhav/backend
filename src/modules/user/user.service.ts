@@ -30,7 +30,6 @@ export class UserService {
         throw new BadRequestException('User already exists');
       }
       const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-      console.log('hi');
       const newUser = new this.userModel({
         name: createUserDto.name,
         email: createUserDto.email,
@@ -54,7 +53,6 @@ export class UserService {
         console.log(process.env.JWT_SECRET);
         const payload = { name: user.name, sub: user._id };
         const accessToken = this.jwtService.sign(payload);
-        console.log('hi');
         return { accessToken };
       } else {
         throw new BadRequestException('Incorrect password');

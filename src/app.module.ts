@@ -12,6 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { QuoteModule } from './modules/quote/quote.module';
+import { QueryModule } from './modules/query/query.module';
+import { SubscriberModule } from './modules/subscriber/subscriber.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { QuoteModule } from './modules/quote/quote.module';
     AuthModule,
     JwtModule,
     QuoteModule,
+    QueryModule,
+    SubscriberModule,
   ],
   controllers: [AppController],
   providers: [AppService],

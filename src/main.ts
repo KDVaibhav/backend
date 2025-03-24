@@ -6,7 +6,7 @@ async function bootstrap() {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   }); // Enable detailed logs
   app.use(cors({
-    origin: ["http://192.168.29.60:3000"],
+    origin: ["http://192.168.29.222:3000"],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   }));
